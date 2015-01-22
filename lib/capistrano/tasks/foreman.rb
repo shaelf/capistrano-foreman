@@ -23,21 +23,21 @@ namespace :foreman do
 
   desc 'Start the application services'
   task :start do
-    on roles fetch(:foreman_roles) do
+    on roles fetch(:foreman_roles), in: :sequence, wait: 1 do
       sudo :start, fetch(:foreman_app)
     end
   end
 
   desc 'Stop the application services'
   task :stop do
-    on roles fetch(:foreman_roles) do
+    on roles fetch(:foreman_roles), in: :sequence, wait: 1 do
       sudo :stop, fetch(:foreman_app)
     end
   end
 
   desc 'Restart the application services'
   task :restart do
-    on roles fetch(:foreman_roles) do
+    on roles fetch(:foreman_roles), in: :sequence, wait: 1 do
       sudo :restart, fetch(:foreman_app)
     end
   end
